@@ -1,6 +1,6 @@
 # MAC Unit — 8-bit Pipelined Multiply-Accumulate IP Core
 
-A production-quality, synthesizable SystemVerilog IP core implementing a 2-stage pipelined 8×8 unsigned MAC with 32-bit wrapping accumulator. Designed and verified through a **6-phase Agentic RTL workflow** powered by [Claude's RTL Agent Team](https://www.anthropic.com/claude-code).
+A production-quality, synthesizable SystemVerilog IP core implementing a 2-stage pipelined 8×8 unsigned MAC with 32-bit wrapping accumulator. Designed and verified through a **6-phase Agentic RTL workflow** powered by [RTL Agent Team](https://github.com/babyworm/rtl-agent-team).
 
 ---
 
