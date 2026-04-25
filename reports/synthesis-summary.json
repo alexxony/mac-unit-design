@@ -1,0 +1,31 @@
+{
+  "module": "mac_unit",
+  "phase": "P5",
+  "category": "V8",
+  "date": "2026-04-24",
+  "tool": "yosys-0.64+77",
+  "tier": 2,
+  "liberty": null,
+  "sdc": "syn/constraints/mac_unit.sdc",
+  "sdc_clock_period_ns": 2.000,
+  "sdc_clock_freq_mhz": 500,
+  "cells": {
+    "total_raw": 645,
+    "combinational": 594,
+    "sequential": 51,
+    "breakdown": {
+      "$_AND_": 280, "$_OR_": 80, "$_XOR_": 167, "$_MUX_": 66,
+      "$_NOT_": 1, "$_DFFE_PN0P_": 49, "$_DFF_PN0_": 2
+    }
+  },
+  "flop_count": 51,
+  "flop_count_spec": 51,
+  "flop_count_match_spec": true,
+  "latches_inferred": 0,
+  "nand2_fo2_gate_equiv": 1308,
+  "area_um2_equiv_45nm": 1043,
+  "area_um2_equiv_28nm_est_low": 420,
+  "area_um2_equiv_28nm_est_high": 630,
+  "timing_analysis": "SKIPPED_NO_LIBERTY",
+  "verdict": "PASS"
+}

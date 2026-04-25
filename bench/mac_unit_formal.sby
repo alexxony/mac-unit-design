@@ -1,0 +1,22 @@
+[tasks]
+bmc
+prove
+
+[options]
+bmc:   mode bmc
+bmc:   depth 30
+prove: mode prove
+prove: depth 20
+
+[engines]
+bmc:   smtbmc boolector
+prove: smtbmc boolector
+
+[script]
+read -formal mac_unit.sv
+read -formal mac_unit_formal_top.sv
+prep -top mac_unit_formal_top
+
+[files]
+../../rtl/mac_unit/mac_unit.sv
+mac_unit_formal_top.sv

@@ -1,0 +1,44 @@
+{
+  "module": "mac_unit",
+  "phase": "P5",
+  "category": "V2",
+  "date": "2026-04-24",
+  "tool": "SymbiYosys 0.64+77, smtbmc boolector, Yosys OSS",
+  "sva_source": "sim/sva/mac_unit_sva.sv",
+  "formal_wrapper": "sim/formal/mac_unit_formal_top.sv",
+  "config": "sim/formal/mac_unit_formal.sby",
+  "note": "Yosys OSS does not accept SVA `property ... endproperty`. A Verilog-2001 compatible formal wrapper was authored that re-expresses the four named properties using inline assert + history registers. Semantics are equivalent under the `disable iff (!rst_n)` clause (encoded via a reset-sequence assume: cycle 0 !rst_n, cycles 1+ rst_n).",
+  "engines": ["smtbmc boolector"],
+  "tasks": {
+    "bmc": {
+      "mode": "bmc",
+      "depth": 30,
+      "result": "PASS",
+      "elapsed_s": 4,
+      "assertions_checked_count": 4
+    },
+    "prove": {
+      "mode": "prove (k-induction)",
+      "depth": 20,
+      "basecase": "PASS",
+      "induction": "PASS",
+      "elapsed_s": 1,
+      "verdict": "successful proof by k-induction"
+    }
+  },
+  "properties": [
+    {"name": "a_latency_valid_2cyc",  "req": ["REQ-P-002", "REQ-F-005"],        "result": "PROVED", "basecase_bmc": true, "k_induction": true},
+    {"name": "a_clr_zeros",           "req": ["REQ-F-004", "REQ-F-004a"],       "result": "PROVED", "basecase_bmc": true, "k_induction": true},
+    {"name": "a_ovf_sticky",          "req": ["REQ-F-006"],                     "result": "PROVED", "basecase_bmc": true, "k_induction": true},
+    {"name": "a_reset_quiescence",    "req": ["REQ-F-007"],                     "result": "PROVED", "basecase_bmc": true, "k_induction": true}
+  ],
+  "cover": [
+    {"name": "c_ovf_reachable",  "result": "NOT_RUN_IN_BMC_MODE", "note": "cover run not required for Module Graduation"},
+    {"name": "c_o_valid_rise",   "result": "NOT_RUN_IN_BMC_MODE"}
+  ],
+  "verdict": "PASS",
+  "acceptance_criteria_met": [
+    "REQ-U-003.AC-1: skeleton with 4 named properties exists (+2 covers)",
+    "REQ-U-003.AC-2: all bound assertions pass under SymbiYosys BMC depth >= 20 (ran depth 30) AND k-induction depth 20 (stronger than AC requires)"
+  ]
+}
